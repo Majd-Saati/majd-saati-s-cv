@@ -1,6 +1,7 @@
 import { getTechLogo } from '../../data/techLogos';
 import { useLanguage } from '../../i18n/useLanguage';
 import { cx } from '../../lib/classNames';
+import { publicUrl } from '../../lib/paths';
 import type { Project } from '../../types/portfolio';
 import { Icon } from '../ui/Icon';
 import { TechLogo } from '../ui/TechLogo';
@@ -32,7 +33,7 @@ export function ProjectMedia({ project, index, size = 'card', className }: Proje
     <div className={cx(styles.media, isHero && styles.hero, className)}>
       {project.image ? (
         <img
-          src={project.image.src}
+          src={publicUrl(project.image.src)}
           alt={text(project.image.alt)}
           width={project.image.width}
           height={project.image.height}

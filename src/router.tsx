@@ -1,13 +1,15 @@
 import { createBrowserRouter } from 'react-router';
 import { RootLayout } from './components/layout/RootLayout';
 import { ROUTES } from './data/routes';
+import { ROUTER_BASENAME } from './lib/paths';
 import { HomePage } from './pages/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 /**
  * App routes. Detail pages are lazy-loaded so the home page's initial bundle
  * stays small. Hosting must serve index.html for unknown paths (SPA fallback)
- * so deep links like /experience/peal work on reload.
+ * so deep links like /experience/peal work on reload (the GitHub Pages workflow
+ * publishes index.html as 404.html for this).
  */
 export const router = createBrowserRouter([
   {
@@ -31,4 +33,4 @@ export const router = createBrowserRouter([
       { path: '*', Component: NotFoundPage },
     ],
   },
-]);
+], { basename: ROUTER_BASENAME || undefined });

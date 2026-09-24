@@ -1,5 +1,6 @@
 import type { ImageAsset } from '../../types/portfolio';
 import { useLanguage } from '../../i18n/useLanguage';
+import { publicUrl } from '../../lib/paths';
 import styles from './ProfilePhoto.module.css';
 
 interface ProfilePhotoProps {
@@ -18,7 +19,7 @@ export function ProfilePhoto({ photo, label, initials }: ProfilePhotoProps) {
       {photo ? (
         <img
           className={styles.image}
-          src={photo.src}
+          src={publicUrl(photo.src)}
           alt={text(photo.alt)}
           width={photo.width}
           height={photo.height}

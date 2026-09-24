@@ -19,6 +19,7 @@ Copy `.env.example` to `.env` and set:
 | Variable        | Purpose                                                                  |
 | --------------- | ------------------------------------------------------------------------ |
 | `VITE_SITE_URL` | Public URL (no trailing slash). Enables canonical, `og:url`, sitemap.xml |
+| `VITE_BASE_PATH` | Sub-path the site is served from, e.g. `/my-repo/` (default `/`)       |
 
 ## Updating content
 
@@ -90,7 +91,7 @@ Key decisions:
   - Animations use `useGSAP` for automatic cleanup and `gsap.matchMedia()` so nothing animates under `prefers-reduced-motion` (content is fully visible and anchor jumps are instant).
   - Don't add CSS `transition`s on `transform`/`opacity` for elements GSAP animates, and don't re-enable `scroll-behavior: smooth` — both fight GSAP's per-frame updates.
 - **Routing** — React Router: `/` (all sections), `/experience/:id`, `/projects/:id` and `/courses/:id` (detail pages, lazy-loaded), and a 404. Every role, project and course automatically gets a details page, is linked from its card, and is listed in `sitemap.xml`. The home Experience section shows only the main facts per role; responsibilities, achievements and the role's projects are on its details page. Roles and projects are cross-linked via `projectIds` in `experience.ts`: a project's page shows its role (linked) and the CV bullets about it, derived rather than duplicated. Nav links point to `/#section` and work from any page. Layout effects reset scroll to the top **before** a new page builds its ScrollTriggers (`ScrollReset`); keep that component above `<Outlet />`.
-- **Deploying** — configure your host's SPA fallback so deep links load `index.html` (e.g. Netlify `_redirects`: `/* /index.html 200`; Vercel: rewrite all routes to `/index.html`).
+- **Deploying** — `.github/workflows/deploy.yml` builds and deploys to **GitHub Pages** on every push to `main` (one-time setup: Settings → Pages → Source: *GitHub Actions*). The build publishes `index.html` as `404.html`, so deep links like `/projects/menwer` work on Pages. `VITE_BASE_PATH` sets the sub-path the site is served from (the workflow sets it automatically; leave it empty for a custom domain or root hosting). Other hosts: configure an SPA fallback to `index.html`.
 - **Icons** — UI icons come from [Phosphor](https://phosphoricons.com) via the `Icon` component, which maps semantic names (`IconName` in `components/ui/icons.ts`) to Phosphor components; change an icon there, never at call sites. Icons use the `regular` weight (or `duotone` for large badges); `bold` and `fill` are deliberately not used, and the `Icon` prop types disallow them. Technology brand logos (Next.js, React, MySQL…) come from Simple Icons because Phosphor doesn't include them.
 - **Performance** — ~200 KB gzipped JS on first load, split into cacheable vendor chunks (React + React Router ≈ 98, GSAP ≈ 46, icons + logos ≈ 37, app ≈ 20); detail pages load on demand (~1 KB each); lazy-loaded project images.
 - **Accessibility** — semantic landmarks, skip link, one `h1` with ordered headings, visible focus rings, `aria-pressed` language switch, labelled icon buttons, 44px touch targets, WCAG AA color contrast in both themes.

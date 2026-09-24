@@ -16,10 +16,11 @@ export function usePageMeta(title: string, description: string, path: string) {
     setAttribute('meta[property="og:title"]', 'content', title);
     setAttribute('meta[property="og:description"]', 'content', description);
 
-    const canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (canonical) {
-      const url = new URL(path, canonical.href).href;
-      canonical.href = url;
+    const siteUrl = import.meta.env.VITE_SITE_URL?.replace(/\/+$/, '');
+    if (siteUrl) {
+      // Site URL already includes any base path (e.g. /repo on GitHub Pages).
+      const url = `${siteUrl}${path}`;
+      setAttribute('link[rel="canonical"]', 'href', url);
       setAttribute('meta[property="og:url"]', 'content', url);
     }
   }, [title, description, path]);

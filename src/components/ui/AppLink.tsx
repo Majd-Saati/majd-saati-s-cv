@@ -1,6 +1,7 @@
 import type { ComponentProps } from 'react';
 import { Link } from 'react-router';
 import { useLanguage } from '../../i18n/useLanguage';
+import { publicUrl } from '../../lib/paths';
 
 export interface AppLinkProps extends ComponentProps<'a'> {
   href: string;
@@ -26,10 +27,12 @@ function isAppRoute(href: string, download: AppLinkProps['download']): boolean {
  */
 export function AppLink({ external = false, href, children, ...props }: AppLinkProps) {
   const { t } = useLanguage();
+  // Routes get the base path from the router; site-relative files need it added.
+  const fileHref = publicUrl(href);
 
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+      <a href={fileHref} target="_blank" rel="noopener noreferrer" {...props}>
         {children}
         <span className="visually-hidden"> {t.a11y.opensInNewTab}</span>
       </a>
@@ -45,7 +48,7 @@ export function AppLink({ external = false, href, children, ...props }: AppLinkP
   }
 
   return (
-    <a href={href} {...props}>
+    <a href={fileHref} {...props}>
       {children}
     </a>
   );
