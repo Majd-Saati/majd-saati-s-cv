@@ -1,0 +1,28 @@
+.section {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+
+.list {
+  display: grid;
+  gap: var(--space-4);
+  list-style: none;
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.list li {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.icon {
+  margin-block-start: 0.3em;
+  color: var(--color-accent);
+}

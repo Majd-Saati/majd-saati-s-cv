@@ -1,0 +1,101 @@
+/* Design tokens. Components consume these variables only — never raw values. */
+
+:root {
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  --text-2xl: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.25vw, 3.25rem);
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.65;
+  --tracking-tight: -0.025em;
+
+  /* Spacing (4px scale) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --section-space: clamp(4.5rem, 3rem + 6vw, 7.5rem);
+
+  /* Layout */
+  --container-width: 72rem;
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+  --header-height: 4rem;
+  --touch-target: 2.75rem;
+
+  /* Shape */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-full: 999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 600ms;
+}
+
+:root:lang(ar) {
+  --font-sans: 'IBM Plex Sans Arabic', 'Inter', system-ui, sans-serif;
+  /* Letter-spacing breaks Arabic glyph joining. */
+  --tracking-tight: 0;
+  --leading-normal: 1.8;
+}
+
+/* Colors — light (default) */
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f4f4f5;
+  --color-border: #e4e4e7;
+  --color-border-strong: #d4d4d8;
+  --color-text: #18181b;
+  --color-text-muted: #52525b;
+  --color-text-subtle: #6b6b75;
+  --color-accent: #0f766e;
+  --color-accent-hover: #115e59;
+  --color-accent-soft: rgb(15 118 110 / 0.08);
+  --color-on-accent: #ffffff;
+  --color-focus: #0d9488;
+  --color-header-bg: rgb(250 250 250 / 0.8);
+  --color-grid: rgb(24 24 27 / 0.05);
+  --shadow-sm: 0 1px 2px rgb(24 24 27 / 0.05);
+  --shadow-md: 0 8px 24px -12px rgb(24 24 27 / 0.18);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #09090b;
+  --color-surface: #111113;
+  --color-surface-muted: #18181b;
+  --color-border: #27272a;
+  --color-border-strong: #3f3f46;
+  --color-text: #fafafa;
+  --color-text-muted: #a1a1aa;
+  --color-text-subtle: #8e8e98;
+  --color-accent: #2dd4bf;
+  --color-accent-hover: #5eead4;
+  --color-accent-soft: rgb(45 212 191 / 0.1);
+  --color-on-accent: #042f2e;
+  --color-focus: #5eead4;
+  --color-header-bg: rgb(9 9 11 / 0.75);
+  --color-grid: rgb(250 250 250 / 0.045);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 12px 32px -16px rgb(0 0 0 / 0.7);
+}

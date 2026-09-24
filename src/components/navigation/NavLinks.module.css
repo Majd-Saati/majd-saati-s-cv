@@ -1,0 +1,82 @@
+.wrapper {
+  position: relative;
+  isolation: isolate;
+}
+
+/*
+ * Sliding active-section pill (horizontal nav). Positioned with physical
+ * `left` because GSAP moves it by the links' physical `offsetLeft`, which is
+ * correct in both LTR and RTL.
+ */
+.indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: -1;
+  width: 0;
+  height: 2rem;
+  margin-top: -1rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-accent-soft);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 25%, transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.list {
+  display: flex;
+  list-style: none;
+}
+
+.horizontal {
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.vertical {
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--touch-target);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.link:hover {
+  color: var(--color-text);
+}
+
+.link[aria-current='true'] {
+  color: var(--color-accent);
+}
+
+/* Vertical (mobile) nav: a rail marker instead of the sliding pill. */
+.vertical .link {
+  font-size: var(--text-base);
+}
+
+.vertical .link::after {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 25%;
+  bottom: 25%;
+  width: 2px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-accent);
+  transform: scaleY(0);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.vertical .link[aria-current='true']::after {
+  transform: scaleY(1);
+}

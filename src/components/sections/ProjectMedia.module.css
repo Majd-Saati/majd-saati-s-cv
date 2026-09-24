@@ -1,0 +1,85 @@
+/* Project screenshot or logo-based placeholder (cards and details page). */
+
+.media {
+  aspect-ratio: 16 / 9;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface-muted);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--color-accent);
+  background-image:
+    radial-gradient(circle at 50% 50%, var(--color-accent-soft), transparent 65%),
+    linear-gradient(var(--color-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    24px 24px,
+    24px 24px;
+}
+
+.logoStack {
+  display: flex;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.logoTile {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+/* Tiles fan out slightly when the card is hovered. */
+@media (prefers-reduced-motion: no-preference) {
+  :hover > .media .logoTile:nth-child(odd) {
+    transform: translateY(-4px) rotate(-4deg);
+  }
+
+  :hover > .media .logoTile:nth-child(even) {
+    transform: translateY(4px) rotate(4deg);
+  }
+}
+
+.index {
+  position: absolute;
+  inset-inline-end: var(--space-4);
+  bottom: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+}
+
+/* Larger variant for the details page. */
+.hero {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+.hero .logoTile {
+  width: 4.5rem;
+  height: 4.5rem;
+}

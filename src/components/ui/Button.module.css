@@ -1,0 +1,76 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target);
+  padding-inline: var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+  /* No transform transition: magnetic buttons are moved by GSAP (useMagnetic). */
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.primary {
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.primary:hover {
+  background-color: var(--color-accent-hover);
+  box-shadow: 0 8px 24px -10px var(--color-accent);
+}
+
+.secondary {
+  background-color: var(--color-surface);
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.secondary:hover {
+  border-color: var(--color-text-subtle);
+}
+
+.ghost {
+  color: var(--color-text-muted);
+  padding-inline: var(--space-3);
+}
+
+.ghost:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface-muted);
+}
+
+.iconButton {
+  display: inline-grid;
+  place-items: center;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.iconButton:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface-muted);
+}

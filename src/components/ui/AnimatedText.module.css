@@ -1,0 +1,13 @@
+/* Clips each word so it can slide up from below its own baseline. */
+.mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* Room for descenders and Arabic diacritics so glyphs aren't clipped. */
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+
+.word {
+  display: inline-block;
+}

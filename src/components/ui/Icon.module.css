@@ -1,0 +1,7 @@
+.icon {
+  flex-shrink: 0;
+}
+
+:global([dir='rtl']) .directional {
+  transform: scaleX(-1);
+}

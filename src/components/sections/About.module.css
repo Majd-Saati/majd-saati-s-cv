@@ -1,0 +1,87 @@
+.grid {
+  display: grid;
+  gap: var(--space-10);
+}
+
+.story {
+  display: grid;
+  gap: var(--space-8);
+  align-content: start;
+  color: var(--color-text-muted);
+}
+
+.lead {
+  font-size: var(--text-xl);
+  color: var(--color-text);
+}
+
+.block {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.heading {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.aside {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+}
+
+/* Value first visually, label first in the DOM for correct dt/dd order. */
+.highlight {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  padding: var(--space-5);
+}
+
+.highlightValue {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+.highlightLabel {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.focusList {
+  display: grid;
+  gap: var(--space-3);
+  margin-block-start: var(--space-4);
+  list-style: none;
+  color: var(--color-text-muted);
+}
+
+.focusList li {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.check {
+  margin-block-start: 0.3em;
+  color: var(--color-accent);
+}
+
+@media (min-width: 60rem) {
+  .grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: var(--space-16);
+  }
+}

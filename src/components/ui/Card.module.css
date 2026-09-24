@@ -1,0 +1,34 @@
+.card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: clamp(var(--space-5), 4vw, var(--space-8));
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+}
+
+.interactive:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+  box-shadow: var(--shadow-md);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .interactive:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* Pointer spotlight; position/opacity driven by useSpotlight (GSAP). */
+.interactive::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: radial-gradient(
+    22rem circle at calc(var(--spot-x, 0) * 1px) calc(var(--spot-y, 0) * 1px),
+    color-mix(in srgb, var(--color-accent) 12%, transparent),
+    transparent 45%
+  );
+  opacity: var(--spot-opacity, 0);
+  pointer-events: none;
+}

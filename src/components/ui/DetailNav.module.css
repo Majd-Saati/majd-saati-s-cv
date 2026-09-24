@@ -1,0 +1,56 @@
+.nav {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.link {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+}
+
+.link:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+}
+
+.next {
+  text-align: end;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.next .label {
+  justify-self: end;
+}
+
+.title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.link:hover .title {
+  color: var(--color-accent);
+}
+
+@media (min-width: 48rem) {
+  .nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Keep "next" on the end side even when there's no "previous". */
+  .next {
+    grid-column: 2;
+  }
+}

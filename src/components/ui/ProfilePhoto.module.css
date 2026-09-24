@@ -1,0 +1,52 @@
+.frame {
+  position: relative;
+  width: min(100%, 22rem);
+  aspect-ratio: 4 / 5;
+  margin-inline: auto;
+}
+
+/* Offset outline gives the portrait depth without extra decoration. */
+.frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  translate: var(--space-4) var(--space-4);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  opacity: 0.5;
+}
+
+:global([dir='rtl']) .frame::before {
+  translate: calc(var(--space-4) * -1) var(--space-4);
+}
+
+.image,
+.placeholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.image {
+  object-fit: cover;
+  object-position: center top;
+  background-color: var(--color-surface-muted);
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 30% 20%, var(--color-accent-soft), transparent 60%),
+    var(--color-surface-muted);
+}
+
+.initials {
+  font-family: var(--font-mono);
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--color-accent);
+}

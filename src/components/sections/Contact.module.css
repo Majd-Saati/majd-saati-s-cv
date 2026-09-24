@@ -1,0 +1,90 @@
+.layout {
+  display: grid;
+  gap: var(--space-8);
+  justify-items: start;
+}
+
+.channels {
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+  list-style: none;
+}
+
+.channel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+}
+
+.channelIcon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.channelText {
+  display: grid;
+  min-width: 0;
+}
+
+.channelLabel {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.channelValue,
+.channelPlain {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* The whole card is clickable via the link's stretched hit area. */
+.channelValue::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.channelValue:focus-visible {
+  outline: none;
+}
+
+.channelValue:focus-visible::after {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+:global([dir='rtl']) .channelValue {
+  text-align: right;
+}
+
+.channel:has(.channelValue):hover .channelValue {
+  color: var(--color-accent);
+}
+
+@media (min-width: 40rem) {
+  .channels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .channels {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}

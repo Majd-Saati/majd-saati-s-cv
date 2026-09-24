@@ -1,0 +1,227 @@
+.hero {
+  position: relative;
+  padding-block: clamp(3.5rem, 2rem + 7vw, 7rem);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Faint engineering grid that fades out toward the edges. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--color-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.content {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+}
+
+.greeting {
+  display: block;
+  margin-block-end: var(--space-2);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 0;
+}
+
+.role {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+:global(:root:lang(ar)) .role {
+  font-family: var(--font-sans);
+}
+
+.headline {
+  max-width: 36rem;
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: var(--space-3);
+}
+
+/* Core stack */
+
+.stack {
+  display: grid;
+  gap: var(--space-3);
+  width: 100%;
+  margin-block-start: var(--space-4);
+  padding-block-start: var(--space-5);
+  border-top: 1px dashed var(--color-border-strong);
+}
+
+.stackLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+:global(:root:lang(ar)) .stackLabel {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  letter-spacing: 0;
+}
+
+.stackList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.stackItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.stackItem:hover {
+  border-color: var(--color-border-strong);
+  transform: translateY(-2px);
+}
+
+/* Portrait */
+
+.media {
+  position: relative;
+  order: -1;
+  width: min(100%, 11rem);
+  justify-self: start;
+}
+
+/* Soft accent glow behind the portrait. */
+.media::before {
+  content: '';
+  position: absolute;
+  inset: 5%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 35%, transparent), transparent 70%);
+  filter: blur(40px);
+}
+
+.badges {
+  display: none;
+  list-style: none;
+}
+
+.badge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge:nth-child(1) {
+  top: 8%;
+  inset-inline-start: -12%;
+}
+
+.badge:nth-child(2) {
+  top: 46%;
+  inset-inline-end: -14%;
+}
+
+.badge:nth-child(3) {
+  bottom: 6%;
+  inset-inline-start: -6%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .badge {
+    animation: float 6s ease-in-out infinite alternate;
+  }
+
+  .badge:nth-child(2) {
+    animation-delay: -2s;
+  }
+
+  .badge:nth-child(3) {
+    animation-delay: -4s;
+  }
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@media (min-width: 48rem) {
+  .grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: var(--space-16);
+  }
+
+  .media {
+    order: 0;
+    width: 100%;
+    justify-self: center;
+  }
+
+  .badges {
+    display: block;
+  }
+}

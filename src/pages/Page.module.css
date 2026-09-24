@@ -1,0 +1,156 @@
+/* Shared layout for detail pages (project, course) and the 404 page. */
+
+.content {
+  display: grid;
+  gap: var(--space-12);
+  padding-block: var(--space-12) var(--section-space);
+}
+
+.block {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+.blockTitle {
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Project: contributions + technologies side by side on wide screens */
+
+.detailGrid {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.detailMain,
+.detailAside {
+  display: grid;
+  gap: var(--space-10);
+  align-content: start;
+  min-width: 0;
+}
+
+/* Links inside header facts (e.g. a project's role). */
+.factLink {
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-strong);
+  text-underline-offset: 4px;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.factLink:hover {
+  color: var(--color-accent);
+  text-decoration-color: currentColor;
+}
+
+/* Card grid (e.g. projects delivered in a role). */
+.cardGrid {
+  display: grid;
+  gap: var(--space-6);
+  list-style: none;
+}
+
+@media (min-width: 48rem) {
+  .cardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 60rem) {
+  .detailGrid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: var(--space-16);
+  }
+
+  .detailAside {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-6));
+  }
+}
+
+/* Course: credential panel */
+
+.courseHero {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+  padding: clamp(var(--space-6), 4vw, var(--space-10));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 100% 0%, var(--color-accent-soft), transparent 55%),
+    var(--color-surface);
+}
+
+:global([dir='rtl']) .courseHero {
+  background:
+    radial-gradient(circle at 0% 0%, var(--color-accent-soft), transparent 55%),
+    var(--color-surface);
+}
+
+.courseLogo {
+  display: grid;
+  place-items: center;
+  width: 6rem;
+  height: 6rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-muted);
+  box-shadow: var(--shadow-md);
+  color: var(--color-accent);
+}
+
+.courseHeroText {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.courseHeroTitle {
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+
+.courseHeroMeta {
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 48rem) {
+  .courseHero {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+}
+
+/* 404 */
+
+.notFound {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+  padding-block: var(--section-space);
+}
+
+.notFoundCode {
+  font-family: var(--font-mono);
+  font-size: clamp(4rem, 3rem + 6vw, 7rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.notFoundTitle {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+}
+
+.notFoundDescription {
+  color: var(--color-text-muted);
+}

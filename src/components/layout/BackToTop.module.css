@@ -1,0 +1,52 @@
+.button {
+  position: fixed;
+  inset-inline-end: var(--gutter);
+  bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  color: var(--color-text);
+  /* Hidden until GSAP reveals it (avoids a flash before JS runs). */
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+}
+
+.button:hover {
+  color: var(--color-accent);
+}
+
+.button:focus-visible {
+  border-radius: var(--radius-full);
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Start the progress stroke at 12 o'clock. */
+  transform: rotate(-90deg);
+}
+
+.track,
+.progress {
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.track {
+  stroke: var(--color-border);
+}
+
+.progress {
+  stroke: var(--color-accent);
+  stroke-linecap: round;
+}
